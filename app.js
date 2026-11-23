@@ -231,6 +231,11 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "v.",
         meaning: "适应，适合；改编，改造",
         anchor: "字母 a ➔ 联想 action (采取行动) 才能【适应】新环境；alter (改变) 成为【改编】",
+        derivatives: [
+          { word: "adaptation", pos: "n.", meaning: "适应；改编本" },
+          { word: "adaptable", pos: "adj.", meaning: "适应力强的" },
+          { word: "adapter", pos: "n.", meaning: "适配器" }
+        ],
         collocation: "adapt to the new environment (适应新环境) / adapt a novel into a movie (把小说改编成电影)",
         example: "It took him several months to adapt to the university life."
       },
@@ -240,6 +245,10 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "v.",
         meaning: "采纳，采用；收养，领养",
         anchor: "字母 o ➔ 联想 option (做出选项) 从而【采纳】建议；圈出孩子【领养】",
+        derivatives: [
+          { word: "adoption", pos: "n.", meaning: "采纳；收养" },
+          { word: "adoptive", pos: "adj.", meaning: "收养的" }
+        ],
         collocation: "adopt a new approach (采纳新方法) / adopt a child (领养孩子)",
         example: "The school decided to adopt a more flexible teaching schedule."
       },
@@ -249,6 +258,10 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "adj. / n.",
         meaning: "熟练的，精通的；内行，老手",
         anchor: "字母 e ➔ 联想 expert (专家)，代表技能【熟练、内行】",
+        derivatives: [
+          { word: "adeptly", pos: "adv.", meaning: "熟练地" },
+          { word: "adeptness", pos: "n.", meaning: "熟练，熟谙" }
+        ],
         collocation: "be adept at communication (精于沟通) / an adept negotiator (熟练的谈判专家)",
         example: "She is particularly adept at handling difficult customer complaints."
       }
@@ -262,6 +275,64 @@ const DEFAULT_SIMILAR_PRESETS = [
     examTips: "四级高频考点：adapt to 必接介词 to（适应于...）；adopt 为及物动词（adopt measures 采纳措施）。"
   },
   {
+    id: "preset_clinical_critical_cynical",
+    groupTitle: "clinical · critical · cynical",
+    level: "四级 (CET-4) / 考研",
+    confusePoint: "三词拼写相近，均含 -ical 后缀，但词根和含义迥异：clinical 强调客观冷静或临床；critical 强调关键或批评；cynical 强调愤世嫉俗。阅读中极易因形似而误解作者态度或逻辑关系。",
+    words: [
+      {
+        word: "clinical",
+        phonetic: "/ˈklɪnɪkl/",
+        pos: "adj.",
+        meaning: "临床的；冷静客观的，无感情的",
+        anchor: "词根 clin 来自 clinic (诊所)，联想医生在诊所里冷静客观地进行医学诊断 ➔ 【临床的 / 冷静客观的】",
+        derivatives: [
+          { word: "clinic", pos: "n.", meaning: "诊所，门诊部" },
+          { word: "clinician", pos: "n.", meaning: "临床医生，门诊医师" },
+          { word: "clinically", pos: "adv.", meaning: "临床上；客观冷静地" }
+        ],
+        collocation: "clinical trial (临床试验) / clinical attitude (冷静客观的态度) / clinical practice (临床实习)",
+        example: "The new medicine has passed all phases of strict clinical trials."
+      },
+      {
+        word: "critical",
+        phonetic: "/ˈkrɪtɪkl/",
+        pos: "adj.",
+        meaning: "关键的，决定性的；批判的，爱挑剔的；危急的",
+        anchor: "词根 crit 来自 critic (批评家)，联想关键时刻需要批评家指出关键问题 ➔ 【关键的 / 批判的】",
+        derivatives: [
+          { word: "critic", pos: "n.", meaning: "批评家，评论员" },
+          { word: "criticism", pos: "n.", meaning: "批评，指责；评论" },
+          { word: "criticize", pos: "v.", meaning: "批评，挑剔，苛责" },
+          { word: "critically", pos: "adv.", meaning: "批判性地；极其，严重地" }
+        ],
+        collocation: "critical thinking (批判性思维) / play a critical role (起关键作用) / critical condition (病危状况)",
+        example: "Critical thinking is an essential skill for university research."
+      },
+      {
+        word: "cynical",
+        phonetic: "/ˈsɪnɪkl/",
+        pos: "adj.",
+        meaning: "愤世嫉俗的，怀疑人性的，冷嘲热讽的",
+        anchor: "cyn 来自希腊犬儒派 (cynic，狗一样鄙视世俗)，联想总觉得别人动机不纯 ➔ 【愤世嫉俗的】",
+        derivatives: [
+          { word: "cynic", pos: "n.", meaning: "愤世嫉俗者，怀疑论者" },
+          { word: "cynicism", pos: "n.", meaning: "愤世嫉俗，犬儒主义" },
+          { word: "cynically", pos: "adv.", meaning: "冷嘲热讽地，怀疑地" }
+        ],
+        collocation: "cynical attitude (玩世不恭的态度) / a cynical smile (冷嘲的冷笑)",
+        example: "He has a cynical view of politics, believing all leaders only care about power."
+      }
+    ],
+    story: {
+      title: "诊断室里的观点碰撞",
+      en: "While reviewing the medical report, the doctor maintained a calm and **clinical** attitude, but the **cynical** journalist questioned the test data, failing to see its **critical** breakthrough for public health.",
+      cn: "在审视医疗报告时，医生保持着冷静而**客观专业 (clinical)** 的态度，但那位**愤世嫉俗 (cynical)** 的记者却无端质疑检测数据，未能意识到这项试验对公共卫生所起到的**决定性关键 (critical)** 突破。"
+    },
+    mnemonicFormula: "clinic (诊所) 出 clinical (临床/客观)，critic (批评家) 抓 critical (关键/批判)，cynic (犬儒) 叹 cynical (愤世嫉俗)！",
+    examTips: "四级/六级阅读态度题常考：作者态度常为 critical (批判的) 或 clinical/objective (客观冷静的)，少选 cynical (极度愤世嫉俗)。"
+  },
+  {
     id: "preset_defect_defend_defeat_desert",
     groupTitle: "defect · defend · defeat · desert · deficit",
     level: "四级 / 考研 / 雅思",
@@ -273,6 +344,10 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "n. / v.",
         meaning: "n. 缺点，瑕疵，缺陷；v. 变节，背叛",
         anchor: "词根 fect (= do 做)，做坏了、掉落了 ➔ 【缺陷】",
+        derivatives: [
+          { word: "defective", pos: "adj.", meaning: "有缺陷的，有瑕疵的" },
+          { word: "defection", pos: "n.", meaning: "背叛，变节" }
+        ],
         collocation: "manufacturing defect (制造缺陷) / genetic defect (基因缺陷)",
         example: "The software had a fatal defect that caused sudden crashes."
       },
@@ -282,6 +357,11 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "v.",
         meaning: "保卫，防御；辩护",
         anchor: "词根 fend (= strike 击打/抵挡) ➔ 抵挡住敌人的攻击 ➔ 【防御/保卫】",
+        derivatives: [
+          { word: "defense", pos: "n.", meaning: "防御，保卫；辩护" },
+          { word: "defensive", pos: "adj.", meaning: "防御的；有戒心的" },
+          { word: "defendant", pos: "n.", meaning: "被告人" }
+        ],
         collocation: "defend against attacks (防御攻击) / defend one's opinion (为观点辩护)",
         example: "The lawyer defended his client with compelling evidence."
       },
@@ -291,6 +371,10 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "v. / n.",
         meaning: "击败，战胜；失败",
         anchor: "de- + feat (做到底)，彻底做掉对手 ➔ 【击败/战胜对手】",
+        derivatives: [
+          { word: "defeated", pos: "adj.", meaning: "战败的；受挫的" },
+          { word: "defeatism", pos: "n.", meaning: "失败主义" }
+        ],
         collocation: "suffer a defeat (遭受失败) / defeat the opponent (击败对手)",
         example: "Our team defeated the rival team in the final match."
       },
@@ -300,6 +384,10 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "n. / v.",
         meaning: "n. 沙漠，荒原；v. 遗弃，抛弃",
         anchor: "一个 s 是沙漠 (desert)，两个 s 是甜点甜品 (dessert，吃甜品想要双份)",
+        derivatives: [
+          { word: "deserted", pos: "adj.", meaning: "荒芜的，被遗弃的" },
+          { word: "deserter", pos: "n.", meaning: "逃兵，开小差者" }
+        ],
         collocation: "desert island (荒岛) / desert one's post (擅离职守)",
         example: "He refused to desert his teammates during the crisis."
       },
@@ -309,6 +397,10 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "n.",
         meaning: "赤字，亏损，不足额",
         anchor: "词根 fic (= make/do 做)，做出来的数额不够 ➔ 【财政赤字/亏损】",
+        derivatives: [
+          { word: "deficient", pos: "adj.", meaning: "不足的，有缺陷的" },
+          { word: "deficiency", pos: "n.", meaning: "缺乏，不足；缺陷" }
+        ],
         collocation: "trade deficit (贸易逆差) / budget deficit (财政预算赤字)",
         example: "The company managed to turn the financial deficit into a surplus."
       }
@@ -366,6 +458,9 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "v. / n.",
         meaning: "补充，补足；互补物",
         anchor: "含有字母 **e** ➔ 联想 **complete (完成/健全)**，用来补齐使之完整的 ➔ 【补充/互补】",
+        derivatives: [
+          { word: "complementary", pos: "adj.", meaning: "补充的，互补的" }
+        ],
         collocation: "complement each other (互相补充，相得益彰) / a nice complement to (对...的良好补充)",
         example: "Their unique skills complement each other perfectly in teamwork."
       },
@@ -375,6 +470,9 @@ const DEFAULT_SIMILAR_PRESETS = [
         pos: "n. / v.",
         meaning: "赞美，称赞，恭维",
         anchor: "含有字母 **i** ➔ 联想 **I (我)**，我最喜欢听别人的【夸奖和赞美】！",
+        derivatives: [
+          { word: "complimentary", pos: "adj.", meaning: "赞美的；免费赠送的" }
+        ],
         collocation: "pay sb a compliment (赞赏某人) / return the compliment (礼尚往来)",
         example: "He paid her a sincere compliment on her excellent presentation."
       }
@@ -1944,6 +2042,45 @@ function renderSimilarGroup(group) {
 
   const wordsHtml = (group.words || []).map((w, idx) => {
     const isSaved = !!state.getWord(w.word);
+
+    let derivativesHtml = '';
+    if (w.derivatives) {
+      if (Array.isArray(w.derivatives) && w.derivatives.length > 0) {
+        const pills = w.derivatives.map(d => {
+          const dWord = typeof d === 'string' ? d : d.word;
+          const dPos = typeof d === 'object' && d.pos ? `<span class="sim-deriv-pos">${escapeHtml(d.pos)}</span>` : '';
+          const dMeaning = typeof d === 'object' && d.meaning ? `<span class="sim-deriv-meaning">${escapeHtml(d.meaning)}</span>` : '';
+          const isDerivSaved = !!state.getWord(dWord);
+          return `
+            <span class="sim-deriv-item">
+              <span class="sim-deriv-word">${escapeHtml(dWord)}</span>
+              ${dPos}
+              ${dMeaning}
+              <button class="btn-speak-deriv" data-word="${escapeHtml(dWord)}" title="发音">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+              </button>
+              <button class="btn-add-deriv-vocab ${isDerivSaved ? 'saved' : ''}" data-word="${escapeHtml(dWord)}" data-pos="${escapeHtml(typeof d === 'object' ? d.pos || '' : '')}" data-meaning="${escapeHtml(typeof d === 'object' ? d.meaning || '' : '')}" title="${isDerivSaved ? '已在生词本' : '记入生词本'}">
+                ${isDerivSaved ? '✓' : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>'}
+              </button>
+            </span>
+          `;
+        }).join('');
+        derivativesHtml = `
+          <div class="sim-derivatives-box">
+            <span class="sim-derivatives-label">🌱 <strong>派生变形与词族：</strong></span>
+            <div class="sim-derivatives-list">${pills}</div>
+          </div>
+        `;
+      } else if (typeof w.derivatives === 'string' && w.derivatives.trim()) {
+        derivativesHtml = `
+          <div class="sim-derivatives-box">
+            <span class="sim-derivatives-label">🌱 <strong>派生变形与词族：</strong></span>
+            <span class="sim-derivatives-text" style="font-size:12px; color:var(--text-secondary);">${escapeHtml(w.derivatives)}</span>
+          </div>
+        `;
+      }
+    }
+
     return `
       <div class="similar-word-card">
         <div class="word-main-row">
@@ -1967,6 +2104,8 @@ function renderSimilarGroup(group) {
             <span>💡 <strong>记忆锚点：</strong>${escapeHtml(w.anchor)}</span>
           </div>
         ` : ''}
+
+        ${derivativesHtml}
 
         ${w.collocation ? `
           <div class="sim-collocation-text">🎯 <strong>考点搭配：</strong>${escapeHtml(w.collocation)}</div>
@@ -2112,8 +2251,9 @@ async function generateSimilarWords(rawInput, scope = 'CET-4') {
 1. 若输入为单个单词，请在「${scope}」范围内找出与其拼写最形似、极易在阅读/听力中混淆的 1~3 个形近词构成词群；若为多个词，直接对此组词展开深度辨析。
 2. 提炼出本组词在考试中的核心【混淆痛点】。
 3. 对每个单词提炼出极为巧妙的【字母差异与记忆锚点】（例如通过关键不同字母联想到相关单词或图像，如 adapt 中的 a 联想 action 去适应）。
-4. 编写一段妙趣横生、紧凑好记的【趣味串记小故事/情景例句】（把这组单词全部自然融入其中，重点词用 **包裹加粗**），并附带对应高亮中文翻译。
-5. 给出简练易诵的【辨析速记口诀】与真题考点提示。
+4. 对每个单词，必须提供其核心高频的【同根派生变形与词族（derivatives）】（例如：输入 clinical 必须提供 clinic (n. 诊所)、clinician (n. 临床医生)、clinically (adv. 临床上) 等）。
+5. 编写一段妙趣横生、紧凑好记的【趣味串记小故事/情景例句】（把这组单词全部自然融入其中，重点词用 **包裹加粗**），并附带对应高亮中文翻译。
+6. 给出简练易诵的【辨析速记口诀】与真题考点提示。
 
 请严格返回合法的 JSON 对象，不包含任何 Markdown 代码块标签，格式如下：
 {
@@ -2127,6 +2267,10 @@ async function generateSimilarWords(rawInput, scope = 'CET-4') {
       "pos": "词性如 v.",
       "meaning": "核心中文释义",
       "anchor": "关键字母差异与记忆锚点",
+      "derivatives": [
+        {"word": "变形派生词1", "pos": "词性如 n.", "meaning": "中文简释"},
+        {"word": "变形派生词2", "pos": "词性如 adv.", "meaning": "中文简释"}
+      ],
       "collocation": "真题常用搭配",
       "example": "典型例句"
     }
@@ -2846,10 +2990,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Similar Result Delegations: speak word, save single word, save all words, copy text
   document.getElementById('similarResultContainer')?.addEventListener('click', (e) => {
-    // Speak word
+    // Speak main word
     if (e.target.closest('.btn-speak-sim-word')) {
       const word = e.target.closest('.btn-speak-sim-word').dataset.word;
       speakWord(word);
+      return;
+    }
+
+    // Speak derivative word
+    if (e.target.closest('.btn-speak-deriv')) {
+      const word = e.target.closest('.btn-speak-deriv').dataset.word;
+      speakWord(word);
+      return;
+    }
+
+    // Save derivative word to vocab
+    if (e.target.closest('.btn-add-deriv-vocab')) {
+      const btn = e.target.closest('.btn-add-deriv-vocab');
+      const dWord = btn.dataset.word;
+      const dPos = btn.dataset.pos || '';
+      const dMeaning = btn.dataset.meaning || '';
+      const isSaved = !!state.getWord(dWord);
+
+      if (isSaved) {
+        state.removeWord(dWord);
+        btn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
+        btn.classList.remove('saved');
+        btn.title = '记入生词本';
+        showToast(`已将「${dWord}」移出生词本`);
+      } else {
+        state.addOrUpdateWord({
+          id: 'word_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+          word: dWord,
+          phonetic: '',
+          translation: (dPos ? `${dPos} ` : '') + (dMeaning || '派生变形词'),
+          contextSentence: state.currentSimilarGroup?.story?.en?.replace(/\*\*/g, '') || '',
+          sourceType: 'similar',
+          sourceId: state.currentSimilarGroup?.id || '',
+          sourceTitle: `派生词: ${dWord} (${state.currentSimilarGroup?.groupTitle || ''})`,
+          mastered: false,
+          createdAt: new Date().toISOString()
+        });
+        btn.textContent = '✓';
+        btn.classList.add('saved');
+        btn.title = '已在生词本';
+        showToast(`已将派生词「${dWord}」加入生词本！`);
+      }
+      renderVocabList();
       return;
     }
 
@@ -2919,7 +3106,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!group) return;
       let text = `【${group.level || '形近词'}】${group.groupTitle}\n痛点：${group.confusePoint || ''}\n\n`;
       (group.words || []).forEach(w => {
-        text += `• ${w.word} [${w.phonetic || ''}] (${w.pos || ''}) ${w.meaning || ''}\n  记忆锚点: ${w.anchor || ''}\n  搭配: ${w.collocation || ''}\n\n`;
+        text += `• ${w.word} [${w.phonetic || ''}] (${w.pos || ''}) ${w.meaning || ''}\n  记忆锚点: ${w.anchor || ''}\n`;
+        if (w.derivatives && Array.isArray(w.derivatives) && w.derivatives.length > 0) {
+          const dStr = w.derivatives.map(d => typeof d === 'string' ? d : `${d.word} (${d.pos || ''} ${d.meaning || ''})`).join(', ');
+          text += `  派生变形: ${dStr}\n`;
+        }
+        text += `  搭配: ${w.collocation || ''}\n\n`;
       });
       if (group.story) {
         text += `【情景小故事】${group.story.title || ''}\n${group.story.en}\n${group.story.cn}\n\n`;
