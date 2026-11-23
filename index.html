@@ -105,7 +105,84 @@
       </div>
     </main>
 
-    <!-- ==================== TAB 3: 生词本 (Unified Vocabulary) ==================== -->
+    <!-- ==================== TAB 3: 形近词智记 (Similar Words) ==================== -->
+    <main class="view-panel" id="viewSimilarWords">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">形近词智记</h2>
+          <span style="font-size: 12px; color: var(--text-muted);">DeepSeek AI 提炼字母微差 · 趣味故事串记</span>
+        </div>
+        <button class="btn-subtle btn-sm" id="btnRandomSimilarPreset">🎲 换一组</button>
+      </div>
+
+      <!-- Input Card -->
+      <div class="settings-box" style="margin-bottom: 14px;">
+        <label class="form-label" style="display:flex; justify-content:space-between; align-items:center;">
+          <span>🎯 输入目标词汇（支持单词或多个易混词）</span>
+          <span style="font-size: 11px; font-weight:normal; color:var(--text-muted);">例: adapt 或 defect defend</span>
+        </label>
+        
+        <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+          <input type="text" class="form-input" id="inputSimilarTarget" placeholder="输入单词，如 adapt 或 stationery..." style="flex:1;">
+          <button class="btn-primary" id="btnGenSimilarAI" style="white-space:nowrap; padding: 0 16px;">
+            ✨ AI 辨析
+          </button>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: 10px;">
+          <span style="font-size: 12.5px; font-weight: 600; color: var(--text-secondary);">目标考试范围：</span>
+          <select id="selectSimilarScope" class="form-select-sm" style="padding: 4px 10px; font-weight: 600;">
+            <option value="CET-4" selected>四级 (CET-4)</option>
+            <option value="CET-6">六级 (CET-6)</option>
+            <option value="考研英语">考研英语</option>
+            <option value="雅思 IELTS">雅思 (IELTS)</option>
+            <option value="托福 TOEFL">托福 (TOEFL)</option>
+            <option value="高中/高考">高中 / 高考</option>
+            <option value="通用全域">自由 / 不限</option>
+          </select>
+        </div>
+
+        <!-- Quick preset chips -->
+        <div class="similar-preset-row">
+          <span style="font-size: 11.5px; color: var(--text-muted); white-space: nowrap; align-self:center;">真题精选：</span>
+          <div class="preset-chips-scroll" id="presetChipsContainer">
+            <button class="chip-btn active" data-words="adapt adopt adept">adapt / adopt / adept</button>
+            <button class="chip-btn" data-words="defect defend defeat desert deficit">defect / defend / defeat / desert</button>
+            <button class="chip-btn" data-words="stationery stationary">stationery / stationary</button>
+            <button class="chip-btn" data-words="complement compliment">complement / compliment</button>
+            <button class="chip-btn" data-words="access assess excess">access / assess / excess</button>
+            <button class="chip-btn" data-words="principal principle">principal / principle</button>
+            <button class="chip-btn" data-words="emigrate immigrate migrate">emigrate / immigrate</button>
+            <button class="chip-btn" data-words="sensible sensitive">sensible / sensitive</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="similarLoadingBox" class="settings-box" style="display:none; text-align:center; padding: 28px 16px;">
+        <div class="similar-spinner"></div>
+        <p style="font-size: 14px; font-weight: 600; margin-top: 12px; color: var(--accent);">🤖 DeepSeek 正在梳理形近易混词群...</p>
+        <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">提炼字母微差记忆锚点 · 构思趣味情景小故事</p>
+      </div>
+
+      <!-- Result Display Area -->
+      <div id="similarResultContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- History / Saved Groups Section -->
+      <div class="similar-history-section" id="similarHistorySection" style="margin-top: 20px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 10px;">
+          <h3 style="font-size: 14px; font-weight: 700; color: var(--text-secondary);">📚 我的形近词记忆库</h3>
+          <span style="font-size: 12px; color: var(--text-muted);" id="similarHistoryCount">0 组</span>
+        </div>
+        <div class="similar-history-list" id="similarHistoryList">
+          <!-- Rendered dynamically -->
+        </div>
+      </div>
+    </main>
+
+    <!-- ==================== TAB 4: 生词本 (Unified Vocabulary) ==================== -->
     <main class="view-panel" id="viewVocab">
       <div class="section-header">
         <h2 class="section-title">我的生词本</h2>
@@ -249,6 +326,13 @@
           <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
         </svg>
         <span>听力</span>
+      </button>
+
+      <button class="nav-item" data-tab="viewSimilarWords">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path>
+        </svg>
+        <span>形近词</span>
       </button>
 
       <button class="nav-item" data-tab="viewVocab">
@@ -490,8 +574,11 @@
     </div>
 
     <div class="sheet-actions">
-      <button class="btn-primary" id="btnToggleSaveWord" style="flex: 1; padding: 12px; font-size: 15px; justify-content: center;">
+      <button class="btn-primary" id="btnToggleSaveWord" style="flex: 1; padding: 12px; font-size: 14.5px; justify-content: center;">
         + 记入生词本
+      </button>
+      <button class="btn-secondary" id="btnInspectSimilar" style="padding: 12px 14px; font-size: 13px;" title="AI 联想并辨析该单词的易混形近词群">
+        🧩 AI 形近词
       </button>
     </div>
   </div>

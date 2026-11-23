@@ -217,6 +217,328 @@ const DEFAULT_SETTINGS = {
   rewindStep: 5
 };
 
+// ==================== 2.1 SIMILAR WORDS PRESET REPO (形近词真题库) ====================
+const DEFAULT_SIMILAR_PRESETS = [
+  {
+    id: "preset_adapt_adopt_adept",
+    groupTitle: "adapt · adopt · adept",
+    level: "四级 (CET-4) / 考研",
+    confusePoint: "核心元音字母 a / o / e 微差，极易在阅读中视线扫过造成语义误判，在写作中拼写混淆。",
+    words: [
+      {
+        word: "adapt",
+        phonetic: "/əˈdæpt/",
+        pos: "v.",
+        meaning: "适应，适合；改编，改造",
+        anchor: "字母 a ➔ 联想 action (采取行动) 才能【适应】新环境；alter (改变) 成为【改编】",
+        collocation: "adapt to the new environment (适应新环境) / adapt a novel into a movie (把小说改编成电影)",
+        example: "It took him several months to adapt to the university life."
+      },
+      {
+        word: "adopt",
+        phonetic: "/əˈdɒpt/",
+        pos: "v.",
+        meaning: "采纳，采用；收养，领养",
+        anchor: "字母 o ➔ 联想 option (做出选项) 从而【采纳】建议；圈出孩子【领养】",
+        collocation: "adopt a new approach (采纳新方法) / adopt a child (领养孩子)",
+        example: "The school decided to adopt a more flexible teaching schedule."
+      },
+      {
+        word: "adept",
+        phonetic: "/əˈdept/",
+        pos: "adj. / n.",
+        meaning: "熟练的，精通的；内行，老手",
+        anchor: "字母 e ➔ 联想 expert (专家)，代表技能【熟练、内行】",
+        collocation: "be adept at communication (精于沟通) / an adept negotiator (熟练的谈判专家)",
+        example: "She is particularly adept at handling difficult customer complaints."
+      }
+    ],
+    story: {
+      title: "达人的职场蜕变",
+      en: "The **adept** engineer decided to **adopt** a brand-new framework, and then quickly **adapted** his legacy code to the updated system.",
+      cn: "这位**经验熟练的 (adept)** 工程师决定**采纳 (adopt)** 一套全新的技术架构，随后迅速**调整改造 (adapted)** 了原有的旧代码以适应该系统。"
+    },
+    mnemonicFormula: "a (action) 行动求适应，o (option) 选择来采纳，e (expert) 专家最熟练！",
+    examTips: "四级高频考点：adapt to 必接介词 to（适应于...）；adopt 为及物动词（adopt measures 采纳措施）。"
+  },
+  {
+    id: "preset_defect_defend_defeat_desert",
+    groupTitle: "defect · defend · defeat · desert · deficit",
+    level: "四级 / 考研 / 雅思",
+    confusePoint: "全部以 de- 开头且辅音高度近似，听力极易听串，阅读中若扫读过快极易判断相反或误读逻辑。",
+    words: [
+      {
+        word: "defect",
+        phonetic: "/ˈdiːfekt/ (n.) /dɪˈfekt/ (v.)",
+        pos: "n. / v.",
+        meaning: "n. 缺点，瑕疵，缺陷；v. 变节，背叛",
+        anchor: "词根 fect (= do 做)，做坏了、掉落了 ➔ 【缺陷】",
+        collocation: "manufacturing defect (制造缺陷) / genetic defect (基因缺陷)",
+        example: "The software had a fatal defect that caused sudden crashes."
+      },
+      {
+        word: "defend",
+        phonetic: "/dɪˈfend/",
+        pos: "v.",
+        meaning: "保卫，防御；辩护",
+        anchor: "词根 fend (= strike 击打/抵挡) ➔ 抵挡住敌人的攻击 ➔ 【防御/保卫】",
+        collocation: "defend against attacks (防御攻击) / defend one's opinion (为观点辩护)",
+        example: "The lawyer defended his client with compelling evidence."
+      },
+      {
+        word: "defeat",
+        phonetic: "/dɪˈfiːt/",
+        pos: "v. / n.",
+        meaning: "击败，战胜；失败",
+        anchor: "de- + feat (做到底)，彻底做掉对手 ➔ 【击败/战胜对手】",
+        collocation: "suffer a defeat (遭受失败) / defeat the opponent (击败对手)",
+        example: "Our team defeated the rival team in the final match."
+      },
+      {
+        word: "desert",
+        phonetic: "/ˈdezət/ (n.) /dɪˈzɜːt/ (v.)",
+        pos: "n. / v.",
+        meaning: "n. 沙漠，荒原；v. 遗弃，抛弃",
+        anchor: "一个 s 是沙漠 (desert)，两个 s 是甜点甜品 (dessert，吃甜品想要双份)",
+        collocation: "desert island (荒岛) / desert one's post (擅离职守)",
+        example: "He refused to desert his teammates during the crisis."
+      },
+      {
+        word: "deficit",
+        phonetic: "/ˈdefɪsɪt/",
+        pos: "n.",
+        meaning: "赤字，亏损，不足额",
+        anchor: "词根 fic (= make/do 做)，做出来的数额不够 ➔ 【财政赤字/亏损】",
+        collocation: "trade deficit (贸易逆差) / budget deficit (财政预算赤字)",
+        example: "The company managed to turn the financial deficit into a surplus."
+      }
+    ],
+    story: {
+      title: "边疆卫士的坚守",
+      en: "Despite a severe equipment **defect** and a heavy budget **deficit**, the soldiers swore never to **desert** their post, but to **defend** their border territory and completely **defeat** any invaders.",
+      cn: "尽管装备存在严重**缺陷 (defect)** 且预算陷入**赤字 (deficit)**，战士们誓死绝不**擅离/抛弃 (desert)** 阵地，定要誓死**保卫 (defend)** 边疆领土并彻底**击败 (defeat)** 任何侵略者。"
+    },
+    mnemonicFormula: "fect 做坏有缺陷，fend 挡击来防卫；feat 彻底击败之，单 s 沙漠双 s 甜！",
+    examTips: "四级听力与阅读常考：deserted (废弃的荒无人烟的)；trade deficit (贸易赤字)。"
+  },
+  {
+    id: "preset_stationery_stationary",
+    groupTitle: "stationery · stationary",
+    level: "四级 (CET-4) / 高考",
+    confusePoint: "读音完全一模一样（同音词），仅倒数第二个字母 e 与 a 之差，写作拼写致命陷阱。",
+    words: [
+      {
+        word: "stationery",
+        phonetic: "/ˈsteɪʃənri/",
+        pos: "n.",
+        meaning: "文具，信纸信封",
+        anchor: "含有字母 **e** ➔ 联想 **Envelope (信封)** 或 **Eraser (橡皮)**、**pEn (钢笔)**，文具都带 e！",
+        collocation: "stationery shop (文具店) / office stationery (办公文具)",
+        example: "She bought notebooks and pens at the local stationery store."
+      },
+      {
+        word: "stationary",
+        phonetic: "/ˈsteɪʃənri/",
+        pos: "adj.",
+        meaning: "静止的，不动的，固定的",
+        anchor: "含有字母 **a** ➔ 联想 **Anchor (船锚)**，抛锚之后船就【静止不动】了！",
+        collocation: "stationary vehicle (停着的静止车辆) / remain stationary (保持静止)",
+        example: "The traffic was completely stationary for over an hour."
+      }
+    ],
+    story: {
+      title: "堵车中的文具采购",
+      en: "While the bus remained completely **stationary** in the highway jam, Tom sketched his new book cover on a sheet of fine **stationery**.",
+      cn: "当公交车在高速路堵车中完全**静止不动 (stationary)** 时，汤姆在一张精致的**信纸/文具 (stationery)** 上勾勒了他的新书封面。"
+    },
+    mnemonicFormula: "e 是 Envelope 信纸做文具，a 是 Anchor 锚定不动成静止！",
+    examTips: "四级阅读和写作真题常考：stationary bicycle (健身房动感单车/固定自行车)。"
+  },
+  {
+    id: "preset_complement_compliment",
+    groupTitle: "complement · compliment",
+    level: "四级 / 六级 / 考研",
+    confusePoint: "发音几乎相同，仅中间字母 e 与 i 的区别，极难分辨。",
+    words: [
+      {
+        word: "complement",
+        phonetic: "/ˈkɒmplɪment/",
+        pos: "v. / n.",
+        meaning: "补充，补足；互补物",
+        anchor: "含有字母 **e** ➔ 联想 **complete (完成/健全)**，用来补齐使之完整的 ➔ 【补充/互补】",
+        collocation: "complement each other (互相补充，相得益彰) / a nice complement to (对...的良好补充)",
+        example: "Their unique skills complement each other perfectly in teamwork."
+      },
+      {
+        word: "compliment",
+        phonetic: "/ˈkɒmplɪmənt/",
+        pos: "n. / v.",
+        meaning: "赞美，称赞，恭维",
+        anchor: "含有字母 **i** ➔ 联想 **I (我)**，我最喜欢听别人的【夸奖和赞美】！",
+        collocation: "pay sb a compliment (赞赏某人) / return the compliment (礼尚往来)",
+        example: "He paid her a sincere compliment on her excellent presentation."
+      }
+    ],
+    story: {
+      title: "搭档间的默契",
+      en: "Whenever John paid Mary a heartfelt **compliment** on her design, she replied that their mutual collaboration was the ideal **complement** that brought the project to perfection.",
+      cn: "每当约翰真诚地**称赞 (compliment)** 玛丽的设计时，玛丽总会回应说，彼此的默契协作才是让项目趋于完美的绝佳**互补 (complement)**。"
+    },
+    mnemonicFormula: "e 是 complete 求补充，i 是 爱我 (I) 爱赞美！",
+    examTips: "四级常见语法：主语补足语叫 subject complement；写作高频词组：complement each other (相辅相成)。"
+  },
+  {
+    id: "preset_access_assess_excess",
+    groupTitle: "access · assess · excess",
+    level: "四级 / 六级 / 考研",
+    confusePoint: "双写字母（cc / ss）与前缀混淆，发音与外观极度形似。",
+    words: [
+      {
+        word: "access",
+        phonetic: "/ˈækses/",
+        pos: "n. / v.",
+        meaning: "进入；接触/使用的机会或权利；访问",
+        anchor: "ac- (向着) + cess (行走) ➔ 走过去 ➔ 【进入/获取权限】",
+        collocation: "have access to the internet (有权使用互联网) / easy access (便捷通道)",
+        example: "Students have free access to the university digital library."
+      },
+      {
+        word: "assess",
+        phonetic: "/əˈses/",
+        pos: "v.",
+        meaning: "评估，评定，估算",
+        anchor: "as- + sess (坐)，坐在旁边审查考核 ➔ 【评估/评定】",
+        collocation: "assess the damage (评估损失) / assess student performance (评估学生表现)",
+        example: "The committee will carefully assess the environmental impact of the project."
+      },
+      {
+        word: "excess",
+        phonetic: "/ɪkˈses/ (n.) /ˈekses/ (adj.)",
+        pos: "n. / adj.",
+        meaning: "过度，过量，无节制；额外的",
+        anchor: "ex- (超出) + cess (走) ➔ 走过头了 ➔ 【过量/超出】",
+        collocation: "in excess of (超过) / excess baggage (超重行李)",
+        example: "An excess of sugar in one's diet can lead to serious health issues."
+      }
+    ],
+    story: {
+      title: "数据审计师的提醒",
+      en: "Before granting database **access**, the security officer must **assess** the user risk to prevent an **excess** of confidential downloads.",
+      cn: "在授予数据库**访问权限 (access)** 之前，安全主管必须全面**评估 (assess)** 用户风险，以防出现**过度/过量 (excess)** 的机密数据下载。"
+    },
+    mnemonicFormula: "access 走通有权限，assess 坐下细评估，ex 走过头成过量！",
+    examTips: "四级阅读最高频搭配：have access to (可以利用/获取)；assess the situation (审时度势)。"
+  },
+  {
+    id: "preset_principal_principle",
+    groupTitle: "principal · principle",
+    level: "四级 / 六级 / 高考",
+    confusePoint: "结尾 pal 与 ple 的差异，读音相同，词性与词义极其容易在写作中写反。",
+    words: [
+      {
+        word: "principal",
+        phonetic: "/ˈprɪnsəpl/",
+        pos: "adj. / n.",
+        meaning: "adj. 主要的，最重要的；n. 校长；资本，本金",
+        anchor: "结尾 **pal** ➔ 联想 **pal (好朋友/人)**，校长是你的好朋友 (The principal is your pal)；人最重要的 ➔ 【主要的】",
+        collocation: "principal reason (主要原因) / school principal (中小学校长)",
+        example: "Lack of funding is the principal obstacle to our research."
+      },
+      {
+        word: "principle",
+        phonetic: "/ˈprɪnsəpl/",
+        pos: "n.",
+        meaning: "原则，准则；科学原理",
+        anchor: "结尾 **ple** ➔ 联想 **rule (规则)**，都是以 **le** 结尾！代表处事的【准则/原则】",
+        collocation: "in principle (原则上) / stick to principles (坚守原则) / basic principles (基本原理)",
+        example: "He refused to compromise his moral principles for money."
+      }
+    ],
+    story: {
+      title: "校长的育人准则",
+      en: "Our school **principal** gave a speech emphasizing that integrity is the **principal** **principle** all students should uphold.",
+      cn: "我们学校的**校长 (principal)** 发表讲话强调：诚信是全体学生应当秉持的最**主要的 (principal)** 道德**准则 (principle)**。"
+    },
+    mnemonicFormula: "pal 是朋友当校长/主要的，ple 类似 rule 是原则原理！",
+    examTips: "四级完型/选词填空高频：on principle (出于原则)；principal cause (首要诱因)。"
+  },
+  {
+    id: "preset_emigrate_immigrate_migrate",
+    groupTitle: "emigrate · immigrate · migrate",
+    level: "四级 / 六级 / 雅思",
+    confusePoint: "迁出 (e-) 与迁入 (im-) 经常混淆，阅读社科类文章容易理解反方向。",
+    words: [
+      {
+        word: "emigrate",
+        phonetic: "/ˈemɪɡreɪt/",
+        pos: "v.",
+        meaning: "移居国外，迁居他乡（强调迁出）",
+        anchor: "前缀 **e-** (= exit 迁出/离开)，从本国离开去往外国 ➔ 常用搭配 **emigrate from**",
+        collocation: "emigrate from China to Canada (从中国移居加拿大)",
+        example: "His grandparents emigrated from Europe in the early 1900s."
+      },
+      {
+        word: "immigrate",
+        phonetic: "/ˈɪmɪɡreɪt/",
+        pos: "v.",
+        meaning: "移入，迁入（强调迁入并定居）",
+        anchor: "前缀 **im-** (= in 进内/迁入)，进入新国家定居 ➔ 常用搭配 **immigrate to / into**",
+        collocation: "immigrate to Australia (移民进入澳大利亚)",
+        example: "Thousands of skilled workers immigrate to this country every year."
+      },
+      {
+        word: "migrate",
+        phonetic: "/maɪˈɡreɪt/",
+        pos: "v.",
+        meaning: "迁徙（鸟类/动物季节性迁徙）；随工作流动",
+        anchor: "无特定内外前缀，泛指鸟类每年季节性【迁徙】或农民工人口流动",
+        collocation: "birds migrate south for winter (鸟类南迁过冬) / migrate to urban areas (涌入城市)",
+        example: "These swallows migrate thousands of miles each autumn."
+      }
+    ],
+    story: {
+      title: "候鸟与迁徙者",
+      en: "Watching the birds **migrate** south across the horizon, Maria recalled how her family **emigrated** from their homeland and finally **immigrated** into a peaceful coastal city.",
+      cn: "望着鸟群在天际向南**迁徙 (migrate)**，玛丽亚回想起自己的家庭当年如何从祖国**迁出移居 (emigrated)**，并最终作为新移民**迁入定居 (immigrated)** 在这座宁静的沿海城市。"
+    },
+    mnemonicFormula: "e (exit) 离开故土迁出，im (in) 迁入新国定居，migrate 候鸟四海迁徙！",
+    examTips: "四级/雅思常见名词：immigrant (入境移民)；emigrant (移居国外的侨民)；migration (迁徙)。"
+  },
+  {
+    id: "preset_sensible_sensitive",
+    groupTitle: "sensible · sensitive",
+    level: "四级 (CET-4) / 高考",
+    confusePoint: "同源自 sense，但后缀 -ible 与 -itive 赋予了完全不同的褒贬与性格指向。",
+    words: [
+      {
+        word: "sensible",
+        phonetic: "/ˈsensəbl/",
+        pos: "adj.",
+        meaning: "明智的，通情达理的，实用的",
+        anchor: "sense (理智) + ible (能够有理智的) ➔ 头脑清醒、做事【明智有分寸】",
+        collocation: "a sensible decision (明智的决定) / sensible advice (切合实际的建议)",
+        example: "It is sensible to save a portion of your income every month."
+      },
+      {
+        word: "sensitive",
+        phonetic: "/ˈsensətɪv/",
+        pos: "adj.",
+        meaning: "敏感的；易受伤害的；灵敏的",
+        anchor: "sense (感觉) + itive (极其容易感应的) ➔ 情感细腻【敏感】、皮肤过敏或仪器灵敏",
+        collocation: "sensitive skin (敏感肌) / sensitive to criticism (对批评敏感脆弱)",
+        example: "She is very sensitive and easily gets upset by harsh words."
+      }
+    ],
+    story: {
+      title: "明智的沟通艺术",
+      en: "It is always **sensible** to choose your words gently when talking with a deeply **sensitive** friend.",
+      cn: "在与一位内心极度**敏感脆弱 (sensitive)** 的朋友交谈时，慎重委婉地斟酌措辞永远是极其**明智分寸 (sensible)** 的做法。"
+    },
+    mnemonicFormula: "sensible 有理智是明智，sensitive 太感应是敏感！",
+    examTips: "四级常考写作：make a sensible choice (做出明智抉择)；be sensitive to (对...极其敏锐/敏感)。"
+  }
+];
+
 // ==================== 3. APP STATE & STORAGE ====================
 class AppState {
   constructor() {
@@ -225,6 +547,8 @@ class AppState {
     this.vocab = this.loadVocab();
     this.settings = this.loadSettings();
     this.cache = this.loadStorage('minimal_word_cache', {});
+    this.similarHistory = this.loadStorage('minimal_similar_history', DEFAULT_SIMILAR_PRESETS.slice(0, 4));
+    this.currentSimilarGroup = DEFAULT_SIMILAR_PRESETS[0];
 
     // Runtime state
     this.currentTab = 'viewArticles';
@@ -355,6 +679,10 @@ class AppState {
 
   saveSettings() {
     localStorage.setItem('minimal_settings', JSON.stringify(this.settings));
+  }
+
+  saveSimilarHistory() {
+    localStorage.setItem('minimal_similar_history', JSON.stringify(this.similarHistory));
   }
 
   getWord(wordStr) {
@@ -1510,6 +1838,9 @@ function renderVocabList() {
         ${v.contextSentence ? `<div class="vocab-ctx-text">“${escapeHtml(v.contextSentence)}”</div>` : ''}
 
         <div class="vocab-footer-actions">
+          <button class="btn-subtle btn-sm btn-vocab-similar" data-word="${escapeHtml(v.word)}" title="查看形近词辨析与趣味串记">
+            🧩 形近词
+          </button>
           <button class="btn-subtle btn-sm btn-toggle-master" data-word="${escapeHtml(v.word)}">
             ${v.mastered ? '重学' : '✓ 标记掌握'}
           </button>
@@ -1546,11 +1877,12 @@ function exportVocabAsText() {
 function exportUnifiedBackup() {
   const data = {
     appName: 'Minimal English',
-    version: 1,
+    version: 2,
     exportDate: new Date().toISOString(),
     articles: state.articles,
     lessons: state.lessons,
     vocab: state.vocab,
+    similarHistory: state.similarHistory,
     settings: state.settings
   };
 
@@ -1581,6 +1913,10 @@ function importUnifiedBackup(file) {
         state.vocab = data.vocab;
         state.saveVocab();
       }
+      if (data.similarHistory && Array.isArray(data.similarHistory)) {
+        state.similarHistory = data.similarHistory;
+        state.saveSimilarHistory();
+      }
       if (data.settings && typeof data.settings === 'object') {
         state.settings = { ...state.settings, ...data.settings };
         state.saveSettings();
@@ -1590,12 +1926,269 @@ function importUnifiedBackup(file) {
       renderArticleList();
       renderLessonList();
       renderVocabList();
+      renderSimilarHistory();
       showToast('数据备份恢复成功！');
     } catch (err) {
       showToast('备份文件格式有误，恢复失败');
     }
   };
   reader.readAsText(file);
+}
+
+// ==================== 12. SIMILAR WORDS (形近词智记 & 故事串记) ====================
+function renderSimilarGroup(group) {
+  if (!group) return;
+  state.currentSimilarGroup = group;
+  const container = document.getElementById('similarResultContainer');
+  if (!container) return;
+
+  const wordsHtml = (group.words || []).map((w, idx) => {
+    const isSaved = !!state.getWord(w.word);
+    return `
+      <div class="similar-word-card">
+        <div class="word-main-row">
+          <div class="word-main-left">
+            <span class="sim-word-head">${escapeHtml(w.word)}</span>
+            <span class="sim-word-phonetic">${escapeHtml(w.phonetic || '')}</span>
+            <span class="sim-word-pos">${escapeHtml(w.pos || '')}</span>
+            <button class="btn-icon-subtle btn-speak-sim-word" data-word="${escapeHtml(w.word)}" title="发音" style="width:24px; height:24px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+            </button>
+          </div>
+          <button class="btn-subtle btn-sm btn-save-sim-word" data-word-idx="${idx}">
+            ${isSaved ? '✓ 已收录' : '+ 生词本'}
+          </button>
+        </div>
+
+        <div class="sim-word-meaning">${escapeHtml(w.meaning || '')}</div>
+
+        ${w.anchor ? `
+          <div class="sim-anchor-badge">
+            <span>💡 <strong>记忆锚点：</strong>${escapeHtml(w.anchor)}</span>
+          </div>
+        ` : ''}
+
+        ${w.collocation ? `
+          <div class="sim-collocation-text">🎯 <strong>考点搭配：</strong>${escapeHtml(w.collocation)}</div>
+        ` : ''}
+      </div>
+    `;
+  }).join('');
+
+  // Format markdown bold in story text
+  const enStoryFormatted = (group.story?.en || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const cnStoryFormatted = (group.story?.cn || '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+  container.innerHTML = `
+    <div class="similar-group-card">
+      <div class="similar-group-header">
+        <h3 class="similar-title-text">${escapeHtml(group.groupTitle || '形近易混词群')}</h3>
+        <span class="similar-level-badge">${escapeHtml(group.level || '四级 (CET-4)')}</span>
+      </div>
+
+      ${group.confusePoint ? `
+        <div class="similar-pain-banner">
+          ⚠️ <strong>混淆痛点：</strong>${escapeHtml(group.confusePoint)}
+        </div>
+      ` : ''}
+
+      <div class="similar-words-stack">
+        ${wordsHtml}
+      </div>
+
+      ${group.story ? `
+        <div class="similar-story-card">
+          <div class="story-header-row">
+            <span>📖 趣味串记小故事 · 一网打尽</span>
+            ${group.story.title ? `<span style="font-size:11.5px; opacity:0.85;">「${escapeHtml(group.story.title)}」</span>` : ''}
+          </div>
+          <div class="story-en-text">${enStoryFormatted}</div>
+          <div class="story-cn-text">${cnStoryFormatted}</div>
+        </div>
+      ` : ''}
+
+      ${group.mnemonicFormula ? `
+        <div class="similar-formula-box">
+          ✨ <strong>速记口诀：</strong>${escapeHtml(group.mnemonicFormula)}
+        </div>
+      ` : ''}
+
+      ${group.examTips ? `
+        <div style="font-size: 12.5px; color: var(--text-secondary); line-height: 1.5; padding: 2px 4px;">
+          📌 <strong>考点锦囊：</strong>${escapeHtml(group.examTips)}
+        </div>
+      ` : ''}
+
+      <div class="similar-actions-row">
+        <button class="btn-primary btn-sm" id="btnSaveAllSimWords" style="flex:1; justify-content:center; padding:8px 12px;">
+          📥 一键全组入生词本
+        </button>
+        <button class="btn-secondary btn-sm" id="btnCopySimCard" style="padding:8px 14px;">
+          📋 复制文本
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function addToSimilarHistory(group) {
+  if (!group || !group.words) return;
+  const existingIdx = state.similarHistory.findIndex(h => h.groupTitle === group.groupTitle || h.id === group.id);
+  if (existingIdx >= 0) {
+    state.similarHistory.splice(existingIdx, 1);
+  }
+  state.similarHistory.unshift(group);
+  if (state.similarHistory.length > 20) {
+    state.similarHistory.pop();
+  }
+  state.saveSimilarHistory();
+  renderSimilarHistory();
+}
+
+function renderSimilarHistory() {
+  const container = document.getElementById('similarHistoryList');
+  const countEl = document.getElementById('similarHistoryCount');
+  if (!container) return;
+
+  const list = state.similarHistory || [];
+  if (countEl) countEl.textContent = `${list.length} 组`;
+
+  if (list.length === 0) {
+    container.innerHTML = '<div style="font-size:12px; color:var(--text-muted); padding:10px 0;">暂无记录，输入单词或点击上方真题精选开始探索！</div>';
+    return;
+  }
+
+  container.innerHTML = list.map((item, idx) => {
+    const wordsPreview = (item.words || []).map(w => w.word).join(' · ');
+    return `
+      <div class="similar-history-item" data-history-idx="${idx}">
+        <div style="display:flex; flex-direction:column; gap:2px;">
+          <div style="font-weight:700; font-size:13.5px; color:var(--text-primary);">${escapeHtml(item.groupTitle || wordsPreview)}</div>
+          <div style="font-size:11.5px; color:var(--text-muted);">${escapeHtml(wordsPreview)}</div>
+        </div>
+        <span class="badge-tag" style="font-size:10.5px;">${escapeHtml(item.level || '四级')}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+async function generateSimilarWords(rawInput, scope = 'CET-4') {
+  const input = (rawInput || '').trim();
+  const loadingBox = document.getElementById('similarLoadingBox');
+  const resultBox = document.getElementById('similarResultContainer');
+
+  if (!input) {
+    showToast('请输入想要辨析的单词或形近词组');
+    return;
+  }
+
+  // 1. Check if matches preset
+  const inputClean = input.toLowerCase().replace(/[\/,\s]+/g, ' ').trim();
+  const matchedPreset = DEFAULT_SIMILAR_PRESETS.find(p => {
+    const pWords = p.words.map(w => w.word.toLowerCase());
+    return pWords.some(w => inputClean.includes(w)) || p.groupTitle.toLowerCase().includes(inputClean);
+  });
+
+  // If no deepseek key
+  if (!state.settings.deepseekKey) {
+    if (matchedPreset) {
+      renderSimilarGroup(matchedPreset);
+      addToSimilarHistory(matchedPreset);
+      showToast(`已加载精选真题形近词：${matchedPreset.groupTitle}`);
+    } else {
+      showToast('未检测到 DeepSeek Key，已为您加载四级标杆词组。可在「设置」填入 Key 启用任意词自由生成！');
+      renderSimilarGroup(DEFAULT_SIMILAR_PRESETS[0]);
+      addToSimilarHistory(DEFAULT_SIMILAR_PRESETS[0]);
+    }
+    return;
+  }
+
+  // 2. Call DeepSeek AI
+  if (loadingBox) loadingBox.style.display = 'block';
+  if (resultBox) resultBox.style.opacity = '0.35';
+
+  try {
+    const prompt = `用户输入目标单词: "${input}"\n学习/考试范围要求: "${scope}"\n\n请针对以上输入执行：
+1. 若输入为单个单词，请在「${scope}」范围内找出与其拼写最形似、极易在阅读/听力中混淆的 1~3 个形近词构成词群；若为多个词，直接对此组词展开深度辨析。
+2. 提炼出本组词在考试中的核心【混淆痛点】。
+3. 对每个单词提炼出极为巧妙的【字母差异与记忆锚点】（例如通过关键不同字母联想到相关单词或图像，如 adapt 中的 a 联想 action 去适应）。
+4. 编写一段妙趣横生、紧凑好记的【趣味串记小故事/情景例句】（把这组单词全部自然融入其中，重点词用 **包裹加粗**），并附带对应高亮中文翻译。
+5. 给出简练易诵的【辨析速记口诀】与真题考点提示。
+
+请严格返回合法的 JSON 对象，不包含任何 Markdown 代码块标签，格式如下：
+{
+  "groupTitle": "词1 · 词2 · 词3",
+  "level": "${scope}",
+  "confusePoint": "混淆痛点说明...",
+  "words": [
+    {
+      "word": "单词",
+      "phonetic": "/音标/",
+      "pos": "词性如 v.",
+      "meaning": "核心中文释义",
+      "anchor": "关键字母差异与记忆锚点",
+      "collocation": "真题常用搭配",
+      "example": "典型例句"
+    }
+  ],
+  "story": {
+    "title": "故事小标题",
+    "en": "英文小故事（重点词加粗）",
+    "cn": "对应中文翻译（重点词加粗）"
+  },
+  "mnemonicFormula": "一句话速记口诀",
+  "examTips": "考点提示"
+}`;
+
+    const res = await fetch('https://api.deepseek.com/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${state.settings.deepseekKey.trim()}`
+      },
+      body: JSON.stringify({
+        model: 'deepseek-chat',
+        temperature: 0.3,
+        response_format: { type: 'json_object' },
+        messages: [
+          {
+            role: 'system',
+            content: '你是一位精通认知心理学与英语词汇记忆的大师。擅长用字母微差拆解、记忆锚点与趣味情景故事帮助学生彻底攻克形近混淆词。只输出合法 JSON，不输出任何多余废话。'
+          },
+          {
+            role: 'user',
+            content: prompt
+          }
+        ]
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error?.message || `HTTP ${res.status}`);
+    }
+
+    const data = await res.json();
+    let content = data.choices[0].message.content.trim();
+    if (content.startsWith('```')) {
+      content = content.replace(/^```json\s*|^```\s*|```$/g, '');
+    }
+
+    const parsed = JSON.parse(content);
+    parsed.id = 'ai_' + Date.now();
+    parsed.createdAt = new Date().toISOString();
+
+    renderSimilarGroup(parsed);
+    addToSimilarHistory(parsed);
+    showToast(`✨ DeepSeek 已为「${parsed.groupTitle}」生成专属记忆故事与辨析！`);
+  } catch (err) {
+    console.error('DeepSeek AI generate failed:', err);
+    showToast(`AI 生成失败: ${err.message || '请检查网络或 API Key'}`);
+    if (matchedPreset) renderSimilarGroup(matchedPreset);
+  } finally {
+    if (loadingBox) loadingBox.style.display = 'none';
+    if (resultBox) resultBox.style.opacity = '1';
+  }
 }
 
 // ==================== 13. APP INITIALIZATION & EVENT BINDINGS ====================
@@ -1635,6 +2228,16 @@ function switchTab(tabId) {
     brandBadge.textContent = `${state.lessons.length} 篇`;
     btnNewLesson.style.display = 'inline-flex';
     renderLessonList();
+  } else if (tabId === 'viewSimilarWords') {
+    brandEmoji.textContent = '🧩';
+    brandName.textContent = '极简英文 · 形近词';
+    brandBadge.textContent = 'AI 智记';
+    if (!state.currentSimilarGroup) {
+      renderSimilarGroup(DEFAULT_SIMILAR_PRESETS[0]);
+    } else {
+      renderSimilarGroup(state.currentSimilarGroup);
+    }
+    renderSimilarHistory();
   } else if (tabId === 'viewVocab') {
     brandEmoji.textContent = '📝';
     brandName.textContent = '极简英文 · 生词本';
@@ -1941,8 +2544,33 @@ document.addEventListener('DOMContentLoaded', () => {
     if (state.currentArticleId) openReader(state.currentArticleId);
   });
 
+  // Jump from Word Inspector to Similar Words AI
+  document.getElementById('btnInspectSimilar')?.addEventListener('click', () => {
+    if (!currentInspectorData?.word) return;
+    const word = currentInspectorData.word;
+    closeWordInspector();
+    closeReader();
+    closeListener();
+    switchTab('viewSimilarWords');
+    const input = document.getElementById('inputSimilarTarget');
+    if (input) input.value = word;
+    const scope = document.getElementById('selectSimilarScope')?.value || 'CET-4';
+    generateSimilarWords(word, scope);
+  });
+
   // --- Vocab List Action Delegations ---
   document.getElementById('vocabListContainer')?.addEventListener('click', (e) => {
+    // Jump to Similar Words from Vocab card
+    if (e.target.closest('.btn-vocab-similar')) {
+      const word = e.target.closest('.btn-vocab-similar').dataset.word;
+      switchTab('viewSimilarWords');
+      const input = document.getElementById('inputSimilarTarget');
+      if (input) input.value = word;
+      const scope = document.getElementById('selectSimilarScope')?.value || 'CET-4';
+      generateSimilarWords(word, scope);
+      return;
+    }
+
     // Speak word
     if (e.target.closest('.btn-speak-vocab')) {
       const word = e.target.closest('.btn-speak-vocab').dataset.word;
@@ -2179,6 +2807,143 @@ document.addEventListener('DOMContentLoaded', () => {
       renderArticleList();
       renderLessonList();
       showToast('已恢复官方示范素材！');
+    }
+  });
+
+  // --- Similar Words Tab Events ---
+  document.getElementById('btnGenSimilarAI')?.addEventListener('click', () => {
+    const input = document.getElementById('inputSimilarTarget').value.trim();
+    const scope = document.getElementById('selectSimilarScope').value;
+    generateSimilarWords(input, scope);
+  });
+
+  document.getElementById('inputSimilarTarget')?.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const input = e.target.value.trim();
+      const scope = document.getElementById('selectSimilarScope').value;
+      generateSimilarWords(input, scope);
+    }
+  });
+
+  document.getElementById('presetChipsContainer')?.addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip-btn');
+    if (!chip) return;
+    document.querySelectorAll('#presetChipsContainer .chip-btn').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+    const words = chip.dataset.words;
+    document.getElementById('inputSimilarTarget').value = words;
+    const scope = document.getElementById('selectSimilarScope').value;
+    generateSimilarWords(words, scope);
+  });
+
+  document.getElementById('btnRandomSimilarPreset')?.addEventListener('click', () => {
+    const randomPreset = DEFAULT_SIMILAR_PRESETS[Math.floor(Math.random() * DEFAULT_SIMILAR_PRESETS.length)];
+    document.getElementById('inputSimilarTarget').value = randomPreset.words.map(w => w.word).join(' ');
+    renderSimilarGroup(randomPreset);
+    addToSimilarHistory(randomPreset);
+    showToast(`已切换至真题组：${randomPreset.groupTitle}`);
+  });
+
+  // Similar Result Delegations: speak word, save single word, save all words, copy text
+  document.getElementById('similarResultContainer')?.addEventListener('click', (e) => {
+    // Speak word
+    if (e.target.closest('.btn-speak-sim-word')) {
+      const word = e.target.closest('.btn-speak-sim-word').dataset.word;
+      speakWord(word);
+      return;
+    }
+
+    // Save single word to vocab
+    if (e.target.closest('.btn-save-sim-word')) {
+      const btn = e.target.closest('.btn-save-sim-word');
+      const idx = parseInt(btn.dataset.wordIdx, 10);
+      const group = state.currentSimilarGroup;
+      if (!group || !group.words || !group.words[idx]) return;
+
+      const w = group.words[idx];
+      const isSaved = !!state.getWord(w.word);
+
+      if (isSaved) {
+        state.removeWord(w.word);
+        btn.textContent = '+ 生词本';
+        showToast(`已将「${w.word}」移出生词本`);
+      } else {
+        state.addOrUpdateWord({
+          id: 'word_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+          word: w.word,
+          phonetic: w.phonetic || '',
+          translation: w.meaning || '',
+          contextSentence: (group.story && group.story.en) ? group.story.en.replace(/\*\*/g, '') : (w.example || ''),
+          sourceType: 'similar',
+          sourceId: group.id || '',
+          sourceTitle: `形近词: ${group.groupTitle}`,
+          mastered: false,
+          createdAt: new Date().toISOString()
+        });
+        btn.textContent = '✓ 已收录';
+        showToast(`已将「${w.word}」加入生词本！`);
+      }
+      renderVocabList();
+      return;
+    }
+
+    // Save all words in group to vocab
+    if (e.target.closest('#btnSaveAllSimWords')) {
+      const group = state.currentSimilarGroup;
+      if (!group || !group.words) return;
+      let addedCount = 0;
+      group.words.forEach(w => {
+        state.addOrUpdateWord({
+          id: 'word_' + Date.now() + '_' + Math.random().toString(36).slice(2, 6),
+          word: w.word,
+          phonetic: w.phonetic || '',
+          translation: w.meaning || '',
+          contextSentence: (group.story && group.story.en) ? group.story.en.replace(/\*\*/g, '') : (w.example || ''),
+          sourceType: 'similar',
+          sourceId: group.id || '',
+          sourceTitle: `形近词: ${group.groupTitle}`,
+          mastered: false,
+          createdAt: new Date().toISOString()
+        });
+        addedCount++;
+      });
+      renderSimilarGroup(group);
+      renderVocabList();
+      showToast(`🎉 已将全组 ${addedCount} 个形近词全部记入生词本！`);
+      return;
+    }
+
+    // Copy card text
+    if (e.target.closest('#btnCopySimCard')) {
+      const group = state.currentSimilarGroup;
+      if (!group) return;
+      let text = `【${group.level || '形近词'}】${group.groupTitle}\n痛点：${group.confusePoint || ''}\n\n`;
+      (group.words || []).forEach(w => {
+        text += `• ${w.word} [${w.phonetic || ''}] (${w.pos || ''}) ${w.meaning || ''}\n  记忆锚点: ${w.anchor || ''}\n  搭配: ${w.collocation || ''}\n\n`;
+      });
+      if (group.story) {
+        text += `【情景小故事】${group.story.title || ''}\n${group.story.en}\n${group.story.cn}\n\n`;
+      }
+      if (group.mnemonicFormula) {
+        text += `【速记口诀】${group.mnemonicFormula}\n`;
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('卡片文本已复制到剪贴板！');
+      }).catch(() => {
+        showToast('复制成功');
+      });
+    }
+  });
+
+  // History item click
+  document.getElementById('similarHistoryList')?.addEventListener('click', (e) => {
+    const item = e.target.closest('.similar-history-item');
+    if (!item) return;
+    const idx = parseInt(item.dataset.historyIdx, 10);
+    const group = state.similarHistory[idx];
+    if (group) {
+      renderSimilarGroup(group);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
 });
