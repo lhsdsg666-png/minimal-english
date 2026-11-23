@@ -2092,9 +2092,16 @@ function renderSimilarGroup(group) {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
             </button>
           </div>
-          <button class="btn-subtle btn-sm btn-save-sim-word" data-word-idx="${idx}">
-            ${isSaved ? '✓ 已收录' : '+ 生词本'}
-          </button>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <button class="btn-subtle btn-sm btn-save-sim-word" data-word-idx="${idx}">
+              ${isSaved ? '✓ 已收录' : '+ 生词本'}
+            </button>
+            ${(group.words && group.words.length > 2) ? `
+              <button class="btn-icon-subtle btn-remove-group-word" data-word="${escapeHtml(w.word)}" title="从本组移出此词" style="width:24px; height:24px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            ` : ''}
+          </div>
         </div>
 
         <div class="sim-word-meaning">${escapeHtml(w.meaning || '')}</div>
@@ -2133,6 +2140,27 @@ function renderSimilarGroup(group) {
 
       <div class="similar-words-stack">
         ${wordsHtml}
+      </div>
+
+      <!-- Add & Expand Word Card -->
+      <div class="similar-add-card">
+        <div class="sim-add-header">
+          <span class="sim-add-title">➕ 拓展本组形近词</span>
+          <span class="sim-add-hint">输入未收录的相似词，让 AI 重新为您串联整组记忆</span>
+        </div>
+        <div class="sim-add-body">
+          <div class="sim-add-input-wrapper">
+            <input type="text" class="form-input sim-add-input" id="inputAddSimilarWord" placeholder="输入你想加入的新形近词，如 clinic 或 cynic..." />
+          </div>
+          <div class="sim-add-btns">
+            <button class="btn-primary btn-sm" id="btnAddWordAndReai">
+              ✨ 加入并 AI 重构整组
+            </button>
+            <button class="btn-secondary btn-sm" id="btnRerunStoryAI" title="重新为当前所有词生成专属小故事与口诀">
+              🔄 AI 重新串记
+            </button>
+          </div>
+        </div>
       </div>
 
       ${group.story ? `
@@ -2211,7 +2239,7 @@ function renderSimilarHistory() {
   }).join('');
 }
 
-async function generateSimilarWords(rawInput, scope = 'CET-4') {
+async function generateSimilarWords(rawInput, scope = 'CET-4', options = {}) {
   const input = (rawInput || '').trim();
   const loadingBox = document.getElementById('similarLoadingBox');
   const resultBox = document.getElementById('similarResultContainer');
@@ -2221,7 +2249,7 @@ async function generateSimilarWords(rawInput, scope = 'CET-4') {
     return;
   }
 
-  // 1. Check if matches preset
+  // 1. Check if matches preset (only when not forced AI)
   const inputClean = input.toLowerCase().replace(/[\/,\s]+/g, ' ').trim();
   const matchedPreset = DEFAULT_SIMILAR_PRESETS.find(p => {
     const pWords = p.words.map(w => w.word.toLowerCase());
@@ -2230,24 +2258,84 @@ async function generateSimilarWords(rawInput, scope = 'CET-4') {
 
   // If no deepseek key
   if (!state.settings.deepseekKey) {
-    if (matchedPreset) {
+    if (!options.forceAi && matchedPreset) {
       renderSimilarGroup(matchedPreset);
       addToSimilarHistory(matchedPreset);
       showToast(`已加载精选真题形近词：${matchedPreset.groupTitle}`);
     } else {
-      showToast('未检测到 DeepSeek Key，已为您加载四级标杆词组。可在「设置」填入 Key 启用任意词自由生成！');
-      renderSimilarGroup(DEFAULT_SIMILAR_PRESETS[0]);
-      addToSimilarHistory(DEFAULT_SIMILAR_PRESETS[0]);
+      showToast('未检测到 DeepSeek Key，可在「设置」填入 Key 启用任意词扩充与 AI 生成！');
+      if (!state.currentSimilarGroup) {
+        renderSimilarGroup(DEFAULT_SIMILAR_PRESETS[0]);
+        addToSimilarHistory(DEFAULT_SIMILAR_PRESETS[0]);
+      }
     }
     return;
   }
 
   // 2. Call DeepSeek AI
+  const loadingTitleEl = document.getElementById('similarLoadingTitle');
+  const loadingSubtitleEl = document.getElementById('similarLoadingSubtitle');
+  if (loadingTitleEl) {
+    loadingTitleEl.textContent = options.loadingTitle || '🤖 DeepSeek 正在梳理形近易混词群...';
+  }
+  if (loadingSubtitleEl) {
+    loadingSubtitleEl.textContent = options.loadingSubtitle || '提炼字母微差记忆锚点 · 构思趣味情景小故事';
+  }
+
   if (loadingBox) loadingBox.style.display = 'block';
   if (resultBox) resultBox.style.opacity = '0.35';
 
   try {
-    const prompt = `用户输入目标单词: "${input}"\n学习/考试范围要求: "${scope}"\n\n请针对以上输入执行：
+    const wordList = input.split(/[\s,\/·•+]+/).map(w => w.trim()).filter(Boolean);
+    let prompt = '';
+
+    if (wordList.length > 1) {
+      const wordsFormatted = wordList.join(' · ');
+      prompt = `用户明确要求对比辨析以下一组指定的形近易混词（共 ${wordList.length} 个单词）：
+【${wordsFormatted}】
+学习/考试范围要求: "${scope}"
+
+请对这组【指定的全部 ${wordList.length} 个单词】展开全方位的深度对比辨析与趣味智记：
+1. 【混淆痛点】：深入分析这 ${wordList.length} 个词在拼写、读音或词义上为何极易混淆，指出核心切入点。
+2. 【单词逐个解析】：返回的 words 数组必须完整包含以上指定的全部 ${wordList.length} 个单词（一个不漏！）：
+   - 音标、词性、精准核心中文释义
+   - 绝妙的【关键字母差异与记忆锚点】（通过字母微差、形象联想等彻底区分彼此）
+   - 【同根派生变形与词族（derivatives）】（核心高频的名词、形容词、副词等派生词，如 clinical ➔ clinic, clinician, clinically）
+   - 真题常用搭配、典型例句
+3. 【趣味串记小故事/情景例句】：编写一段紧凑、连贯且画面感强的趣味情景故事，必须将这 ${wordList.length} 个单词全部自然融入其中（重点词用 **包裹加粗**），并附带对应中文对照翻译。
+4. 【辨析速记口诀】：编写朗朗上口的一句话辨析口诀，精准提炼每个词的辨识特征。
+5. 【考点锦囊】：提示该组词在真题中的常考题型或避坑要点。
+
+请严格返回合法的 JSON 对象，不包含任何 Markdown 代码块标签，格式如下：
+{
+  "groupTitle": "${wordsFormatted}",
+  "level": "${scope}",
+  "confusePoint": "混淆痛点说明...",
+  "words": [
+    {
+      "word": "单词",
+      "phonetic": "/音标/",
+      "pos": "词性如 v.",
+      "meaning": "核心中文释义",
+      "anchor": "关键字母差异与记忆锚点",
+      "derivatives": [
+        {"word": "变形派生词1", "pos": "词性如 n.", "meaning": "中文简释"},
+        {"word": "变形派生词2", "pos": "词性如 adv.", "meaning": "中文简释"}
+      ],
+      "collocation": "真题常用搭配",
+      "example": "典型例句"
+    }
+  ],
+  "story": {
+    "title": "故事小标题",
+    "en": "英文小故事（重点词加粗）",
+    "cn": "对应中文翻译（重点词加粗）"
+  },
+  "mnemonicFormula": "一句话速记口诀",
+  "examTips": "考点提示"
+}`;
+    } else {
+      prompt = `用户输入目标单词: "${input}"\n学习/考试范围要求: "${scope}"\n\n请针对以上输入执行：
 1. 若输入为单个单词，请在「${scope}」范围内找出与其拼写最形似、极易在阅读/听力中混淆的 1~3 个形近词构成词群；若为多个词，直接对此组词展开深度辨析。
 2. 提炼出本组词在考试中的核心【混淆痛点】。
 3. 对每个单词提炼出极为巧妙的【字母差异与记忆锚点】（例如通过关键不同字母联想到相关单词或图像，如 adapt 中的 a 联想 action 去适应）。
@@ -2283,6 +2371,7 @@ async function generateSimilarWords(rawInput, scope = 'CET-4') {
   "mnemonicFormula": "一句话速记口诀",
   "examTips": "考点提示"
 }`;
+    }
 
     const res = await fetch('https://api.deepseek.com/chat/completions', {
       method: 'POST',
@@ -2324,11 +2413,18 @@ async function generateSimilarWords(rawInput, scope = 'CET-4') {
 
     renderSimilarGroup(parsed);
     addToSimilarHistory(parsed);
-    showToast(`✨ DeepSeek 已为「${parsed.groupTitle}」生成专属记忆故事与辨析！`);
+
+    if (options.addedWord) {
+      showToast(`🎉 成功将「${options.addedWord}」加入本组，AI 已重构整组小故事与口诀！`);
+    } else if (options.isRegen) {
+      showToast(`✨ DeepSeek 已为当前词群重新构思了全新的记忆故事与辨析！`);
+    } else {
+      showToast(`✨ DeepSeek 已为「${parsed.groupTitle}」生成专属记忆故事与辨析！`);
+    }
   } catch (err) {
     console.error('DeepSeek AI generate failed:', err);
     showToast(`AI 生成失败: ${err.message || '请检查网络或 API Key'}`);
-    if (matchedPreset) renderSimilarGroup(matchedPreset);
+    if (matchedPreset && !state.currentSimilarGroup) renderSimilarGroup(matchedPreset);
   } finally {
     if (loadingBox) loadingBox.style.display = 'none';
     if (resultBox) resultBox.style.opacity = '1';
@@ -3100,6 +3196,91 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    // Remove single word from group
+    if (e.target.closest('.btn-remove-group-word')) {
+      const btn = e.target.closest('.btn-remove-group-word');
+      const wordToRemove = btn.dataset.word;
+      const group = state.currentSimilarGroup;
+      if (!group || !group.words || group.words.length <= 2) {
+        showToast('形近词组至少保留 2 个单词以供辨析');
+        return;
+      }
+
+      group.words = group.words.filter(w => w.word !== wordToRemove);
+      group.groupTitle = group.words.map(w => w.word).join(' · ');
+      renderSimilarGroup(group);
+      state.saveSimilarHistory();
+      showToast(`已从本组移出「${wordToRemove}」。点击下方「🔄 AI 重新串记」即可更新小故事！`);
+      return;
+    }
+
+    // Add new word & re-weave with AI
+    if (e.target.closest('#btnAddWordAndReai')) {
+      const inputEl = document.getElementById('inputAddSimilarWord');
+      const newWordRaw = inputEl ? inputEl.value.trim() : '';
+      if (!newWordRaw) {
+        showToast('请输入要加入本组的形近词');
+        inputEl?.focus();
+        return;
+      }
+
+      const group = state.currentSimilarGroup;
+      if (!group || !group.words) {
+        showToast('当前没有活动的形近词群');
+        return;
+      }
+
+      const currentWords = group.words.map(w => w.word.toLowerCase());
+      const newWords = newWordRaw.split(/[\s,\/·•+]+/).map(w => w.trim().toLowerCase()).filter(Boolean);
+      const toAdd = newWords.filter(w => !currentWords.includes(w));
+
+      if (toAdd.length === 0) {
+        showToast('输入的单词已在当前词群中！');
+        return;
+      }
+
+      if (!state.settings.deepseekKey) {
+        showToast('使用 AI 扩充词组并重构记忆故事需要 DeepSeek API Key，请在「设置」中填入！');
+        return;
+      }
+
+      const combinedWords = [...group.words.map(w => w.word), ...toAdd];
+      const scope = group.level || document.getElementById('selectSimilarScope')?.value || 'CET-4';
+
+      generateSimilarWords(combinedWords.join(' '), scope, {
+        forceAi: true,
+        addedWord: toAdd.join(', '),
+        loadingTitle: `🤖 DeepSeek 正在将「${toAdd.join(', ')}」融入当前词群...`,
+        loadingSubtitle: `深度辨析 ${combinedWords.length} 词微差 · 为全组重构专属串记小故事与口诀`
+      });
+      return;
+    }
+
+    // Rerun AI story and formula for current words
+    if (e.target.closest('#btnRerunStoryAI')) {
+      const group = state.currentSimilarGroup;
+      if (!group || !group.words || group.words.length === 0) {
+        showToast('当前没有可串记的单词');
+        return;
+      }
+
+      if (!state.settings.deepseekKey) {
+        showToast('重新生成记忆故事需要 DeepSeek API Key，请在「设置」中填入！');
+        return;
+      }
+
+      const words = group.words.map(w => w.word);
+      const scope = group.level || document.getElementById('selectSimilarScope')?.value || 'CET-4';
+
+      generateSimilarWords(words.join(' '), scope, {
+        forceAi: true,
+        isRegen: true,
+        loadingTitle: `🤖 DeepSeek 正在为这 ${words.length} 个单词重构全新情景故事...`,
+        loadingSubtitle: `换个角度记单词 · 提炼全新记忆锚点与趣味口诀`
+      });
+      return;
+    }
+
     // Copy card text
     if (e.target.closest('#btnCopySimCard')) {
       const group = state.currentSimilarGroup;
@@ -3136,6 +3317,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (group) {
       renderSimilarGroup(group);
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  });
+
+  // Enter key trigger for add word input inside similar card
+  document.getElementById('similarResultContainer')?.addEventListener('keydown', (e) => {
+    if (e.target && e.target.id === 'inputAddSimilarWord' && e.key === 'Enter') {
+      e.preventDefault();
+      document.getElementById('btnAddWordAndReai')?.click();
     }
   });
 });
