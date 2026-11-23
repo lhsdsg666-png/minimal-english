@@ -851,14 +851,20 @@ input, button, textarea, select {
 
 .reader-para {
   margin-bottom: 1.6em;
-  text-align: justify;
+  text-align: left;
+  word-spacing: normal;
+  letter-spacing: normal;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 .word-token {
-  display: inline-block;
+  display: inline;
   cursor: pointer;
   border-radius: 4px;
-  padding: 0 1px;
+  padding: 1px 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
   transition: all 0.12s ease;
 }
 .word-token:hover {
@@ -870,6 +876,7 @@ input, button, textarea, select {
   border-bottom: 2px solid var(--highlight-word-border);
   color: var(--highlight-word-text);
   font-weight: 500;
+  padding: 1px 3px;
 }
 
 .para-trans {
@@ -1018,10 +1025,12 @@ input, button, textarea, select {
 }
 
 .sentence-word {
-  display: inline-block;
+  display: inline;
   cursor: pointer;
   border-radius: 3px;
-  padding: 0 1px;
+  padding: 1px 2px;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 .sentence-word:hover {
   background-color: var(--accent-light);
